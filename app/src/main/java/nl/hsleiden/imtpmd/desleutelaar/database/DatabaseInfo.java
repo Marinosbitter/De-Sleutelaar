@@ -11,6 +11,8 @@ public class DatabaseInfo {
     public class LockColumn {
         public static final String INFO_EXCERPT = "info_excerpt";
         public static final String INFO = "info";
+        public static final String LOCKNAME = "name";
+        public static final String PRIZE = "prize";
     }
 
     public class CustomerTables {

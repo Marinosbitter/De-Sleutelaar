@@ -23,18 +23,19 @@ public class MainActivity extends AppCompatActivity {
         DatabaseHelper dbHelper = DatabaseHelper.getHelper(this);
 
         ContentValues values = new ContentValues();
-        values.put(DatabaseInfo.CourseColumn.NAME, "IMTPMD");
-        values.put(DatabaseInfo.CourseColumn.ECTS, "3");
-        values.put(DatabaseInfo.CourseColumn.GRADE, "5.5");
+        values.put(DatabaseInfo.LockColumn.LOCKNAME, "Slot nummero uno");
+        values.put(DatabaseInfo.LockColumn.INFO_EXCERPT, "Dit slot is awsome");
+        values.put(DatabaseInfo.LockColumn.INFO, "Dit slot is echt fucking awsome 'nd shit!");
+        values.put(DatabaseInfo.LockColumn.PRIZE, 100.35 );
 
 // INSERT dit values object in DE (ZELFGEMAAKTE) RIJ COURSE,
-        dbHelper.insert(DatabaseInfo.CourseTables.COURSE, null, values);
+        dbHelper.insert(DatabaseInfo.LockColumn.LOCK, null, values);
 
 
 
 
         //    public Cursor query(String table, String[] columns, String selection, String[] selectArgs, String groupBy, String having, String orderBy){
-        Cursor rs = dbHelper.query(DatabaseInfo.CourseTables.COURSE, new String[]{"*"}, null, null, null, null, null);
+        Cursor rs = dbHelper.query(DatabaseInfo.LockTables.LOCK, new String[]{"*"}, null, null, null, null, null);
         rs.moveToFirst();   // Skip de lege elementen vooraan de rij. Maar : rij kan leeg zijn dus falen
 
 // Haalt uit de resultset
