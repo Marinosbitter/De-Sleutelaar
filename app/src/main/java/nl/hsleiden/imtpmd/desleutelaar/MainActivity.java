@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         rs.moveToFirst();   // Skip de lege elementen vooraan de rij. Maar : rij kan leeg zijn dus falen
 
 // Haalt uit de resultset
-        String lockName = rs.getString(rs.getColumnIndex("lockName"));
+        String lockName = rs.getString(rs.getColumnIndex("name"));
 
 // Even checken of dit goed binnen komt
         Log.d("Lock 1", "Name :" + lockName);
