@@ -22,9 +22,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         // Ik maak een string waar de content van de courses in komt te staan.
-        String json = "[{name: ' module 1', ects: 3, grade:6}," +
-                "{name: ' module 2', ects: 3, grade:6}, " +
-                "{name: ' module 3', ects: 1, grade:6}]";
+        String json = "[{lockName: ' lock 1', infoExerpt: 'bla', info: 'blabla', prize: 4}," +
+                "{lockName: ' lock 2', infoExerpt: 'bla', info: 'blabla', prize: 2}," +
+                "{lockName: ' lock 3', infoExerpt: 'bla', info: 'blabla', prize: 3}]";
 
         Gson gson = new Gson();
         LockModel[] lockModels = gson.fromJson(json, LockModel[].class);
@@ -43,10 +43,10 @@ public class MainActivity extends AppCompatActivity {
         rs.moveToFirst();   // Skip de lege elementen vooraan de rij. Maar : rij kan leeg zijn dus falen
 
 // Haalt uit de resultset
-        String name = rs.getString(rs.getColumnIndex("name"));
+        String lockName = rs.getString(rs.getColumnIndex("lockName"));
 
 // Even checken of dit goed binnen komt
-        Log.d("Michiel deze gevonden=", "deze :" + name);
+        Log.d("Lock 1", "Name :" + lockName);
     }
 
     @Override
