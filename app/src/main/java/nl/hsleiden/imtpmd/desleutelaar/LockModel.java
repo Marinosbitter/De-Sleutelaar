@@ -13,10 +13,10 @@ public class LockModel {
     // name (komt uit Json) mapt nu op variabele die we lokaal gebruiker : (hiephoi)
 
     public String lockName;
-    public String INFO_EXCERPT;
-    public String INFO;
-    public float PRIZE;
-    //  String json = "[{name: ' module 1', ects: 3}," +
-    // "{name: ' module 2', ects: 3}, " +
-    //        "{name: ' module 3', ects: 1}]";
+    public String infoExerpt;
+    public String info;
+    public int prize;
+    // String json = "[{lockName: ' lock 1', infoExerpt: 'bla', info: 'blabla', prize: 4}," +
+    // "{lockName: ' lock 2', infoExerpt: 'bla', info: 'blabla', prize: 2}," +
+    // "{lockName: ' lock 3', infoExerpt: 'bla', info: 'blabla', prize: 3}]";
 }

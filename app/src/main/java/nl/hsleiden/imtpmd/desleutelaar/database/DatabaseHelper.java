@@ -11,7 +11,6 @@ import com.google.gson.Gson;
 
 import nl.hsleiden.imtpmd.desleutelaar.LockModel;
 
-
 /**
  * Created by Marijn on 13/10/2015.
  */
@@ -36,33 +35,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        // Ik maak een string waar de content van de courses in komt te staan.
-        String json = "[{name: ' module 1', ects: 3, grade:6}," +
-                "{name: ' module 2', ects: 3, grade:6}, " +
-                "{name: ' module 3', ects: 1, grade:6}]";
-
-        Gson gson = new Gson();
-        LockModel[] courses = gson.fromJson(json, LockModel[].class);
-        DatabaseHelper dbHelper = DatabaseHelper.getHelper(this);
-
-        for(LockModel course : courses) {
-//            ContentValues values = new ContentValues();
-//            values.put(DatabaseInfo.LockColumn.NAME, course.name);
-//            values.put(DatabaseInfo.LockColumn.ECTS, course.ects);
-//            values.put(DatabaseInfo.LockColumn.GRADE, course.grade);
-//            dbHelper.insert(DatabaseInfo.LockColumn.COURSE, null, values);
-//        }
-//
-//
-//               db.execSQL("CREATE TABLE " + DatabaseInfo.CourseTables.COURSE + " (" +
-//                        BaseColumns._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-//                        DatabaseInfo.CourseColumn.NAME + " TEXT," +
-//                        DatabaseInfo.CourseColumn.ECTS + " TEXT," +
-//                        DatabaseInfo.CourseColumn.GRADE + " REAL);"
-//        );
-//
-//            db.execSQL("");
-
+        db.execSQL("CREATE TABLE " + DatabaseInfo.LockTables.LOCK + " (" +
+                        BaseColumns._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                        DatabaseInfo.LockColumn.LOCKNAME + " TEXT," +
+                        DatabaseInfo.LockColumn.INFO + " TEXT," +
+                        DatabaseInfo.LockColumn.INFO_EXCERPT + " TEXT," +
+                        DatabaseInfo.LockColumn.PRIZE + " INT);"
+        );
+        db.execSQL("CREATE TABLE " + DatabaseInfo.CustomerTables.CUSTOMER + " (" +
+                        BaseColumns._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                        DatabaseInfo.CustomerColumn.CUSTOMERNAME + " TEXT," +
+                        DatabaseInfo.CustomerColumn.ADRESS + " TEXT," +
+                        DatabaseInfo.CustomerColumn.MAIL + " TEXT," +
+                        DatabaseInfo.CustomerColumn.PHONE + " TEXT," +
+                        DatabaseInfo.CustomerColumn.TYPE + " TEXT);"
+        );
     }
 
     @Override

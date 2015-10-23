@@ -20,7 +20,7 @@ public class DatabaseInfo {
     }
 
     public class CustomerColumn {
-        public static final String NAME = "name";
+        public static final String CUSTOMERNAME = "name";
         public static final String ADRESS = "adress";
         public static final String PHONE = "phone";
         public static final String MAIL = "mail";
