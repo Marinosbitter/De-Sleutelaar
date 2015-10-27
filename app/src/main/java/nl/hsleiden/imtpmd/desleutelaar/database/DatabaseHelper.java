@@ -19,7 +19,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static DatabaseHelper mInstance;
 
     public static final String dbName = "sleutelaar.db";
-    public static final int dbVersion = 2;
+    public static final int dbVersion = 3;
 
     public DatabaseHelper(Context ctx) {
         super(ctx, dbName, null, dbVersion);
