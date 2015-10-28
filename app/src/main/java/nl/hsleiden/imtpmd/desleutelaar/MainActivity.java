@@ -39,13 +39,13 @@ public class MainActivity extends AppCompatActivity {
             dbHelper.insert(DatabaseInfo.LockTables.LOCK, null, values);
         }
         //    public Cursor query(String table, String[] columns, String selection, String[] selectArgs, String groupBy, String having, String orderBy){
-        Cursor rs = dbHelper.query(DatabaseInfo.LockTables.LOCK, new String[]{"*"}, null, null, null, null, null);
-        rs.moveToFirst();   // Skip de lege elementen vooraan de rij. Maar : rij kan leeg zijn dus falen
+        Cursor lockRS = dbHelper.query(DatabaseInfo.LockTables.LOCK, new String[]{"*"}, null, null, null, null, null);
+        lockRS.moveToFirst();   // Skip de lege elementen vooraan de rij. Maar : rij kan leeg zijn dus falen
         // Haalt uit de resultset
-        String lockName = rs.getString(rs.getColumnIndex(DatabaseInfo.LockColumn.LOCKNAME));
-        String info = rs.getString(rs.getColumnIndex(DatabaseInfo.LockColumn.INFO));
-        String infoEx = rs.getString(rs.getColumnIndex(DatabaseInfo.LockColumn.INFO_EXCERPT));
-        String prize = rs.getString(rs.getColumnIndex(DatabaseInfo.LockColumn.PRIZE));
+        String lockName = lockRS.getString(lockRS.getColumnIndex(DatabaseInfo.LockColumn.LOCKNAME));
+        String info = lockRS.getString(lockRS.getColumnIndex(DatabaseInfo.LockColumn.INFO));
+        String infoEx = lockRS.getString(lockRS.getColumnIndex(DatabaseInfo.LockColumn.INFO_EXCERPT));
+        String prize = lockRS.getString(lockRS.getColumnIndex(DatabaseInfo.LockColumn.PRIZE));
 
         // Even checken of dit goed binnen komt
         Log.d("Marijn_Lock 1", "Name :" + lockName);
@@ -53,12 +53,12 @@ public class MainActivity extends AppCompatActivity {
         Log.d("Marijn_Lock 1", "infoEx :" + infoEx);
         Log.d("Marijn_Lock 1", "prize :" + prize);
 
-        rs.moveToNext();
+        lockRS.moveToNext();
         // Haalt uit de resultset
-        lockName = rs.getString(rs.getColumnIndex(DatabaseInfo.LockColumn.LOCKNAME));
-        info = rs.getString(rs.getColumnIndex(DatabaseInfo.LockColumn.INFO));
-        infoEx = rs.getString(rs.getColumnIndex(DatabaseInfo.LockColumn.INFO_EXCERPT));
-        prize = rs.getString(rs.getColumnIndex(DatabaseInfo.LockColumn.PRIZE));
+        lockName = lockRS.getString(lockRS.getColumnIndex(DatabaseInfo.LockColumn.LOCKNAME));
+        info = lockRS.getString(lockRS.getColumnIndex(DatabaseInfo.LockColumn.INFO));
+        infoEx = lockRS.getString(lockRS.getColumnIndex(DatabaseInfo.LockColumn.INFO_EXCERPT));
+        prize = lockRS.getString(lockRS.getColumnIndex(DatabaseInfo.LockColumn.PRIZE));
 
         // Even checken of dit goed binnen komt
         Log.d("Marijn_Lock 2", "Name :" + lockName);
