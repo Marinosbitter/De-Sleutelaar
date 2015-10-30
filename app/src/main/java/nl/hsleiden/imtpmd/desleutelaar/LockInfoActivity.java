@@ -1,16 +1,30 @@
 package nl.hsleiden.imtpmd.desleutelaar;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 public class LockInfoActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_lock_info);
+
+        // Get the message from the intent
+        Intent intent = getIntent();
+        String lockValue = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
+
+        // Create the text view
+        TextView textView = new TextView(this);
+        textView.setTextSize(40);
+        textView.setText(lockValue);
+
+        // Set the text view as the activity layout
+        setContentView(textView);
     }
 
     @Override

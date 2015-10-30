@@ -6,4 +6,10 @@
     <string name="title_activity_slot_info">SlotInfoActivity</string>
     <string name="title_activity_lock_info">LockInfoActivity</string>
     <string name="title_activity_order">OrderActivity</string>
+
+    <string name="welkomtext"> Welkom in onze app. De Sleutelaar is een slotenbedrijf dat sloten maakt voor de particuliere en commerciële sector.
+
+    Selecteer hieronder een slot om verder te gaan:
+    </string>
+
 </resources>
