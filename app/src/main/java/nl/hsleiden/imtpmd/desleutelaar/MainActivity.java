@@ -137,7 +137,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public void openMeerInfo(View view) {
+    public void openLockInfoActivity(View view) {
         Log.d("De meer knop", "is succesvol ingedrukt!");
         Intent intent = new Intent(this, LockInfoActivity.class);
         String message = itemValue;

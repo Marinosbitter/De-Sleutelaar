@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 
 public class LockInfoActivity extends AppCompatActivity {
@@ -13,18 +14,22 @@ public class LockInfoActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_lock_info);
 
         // Get the message from the intent
         Intent intent = getIntent();
         String lockValue = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
 
-        // Create the text view
-        TextView textView = new TextView(this);
-        textView.setTextSize(40);
-        textView.setText(lockValue);
+        // Find the info field and sets it to the lock value
+        TextView lockName;
+        lockName = (TextView) findViewById(R.id.extensiveInfoField);
+        lockName.setText(lockValue);
 
-        // Set the text view as the activity layout
-        setContentView(textView);
+    }
+    public void openOrderActivity(View view) {
+        Log.d("De bestel knop", "is succesvol ingedrukt!");
+        Intent intent = new Intent(this, OrderActivity.class);
+        startActivity(intent);
     }
 
     @Override

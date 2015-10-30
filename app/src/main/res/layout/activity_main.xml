@@ -51,6 +51,6 @@
         android:layout_alignParentEnd="true"
         android:clickable="false"
         android:enabled="false"
-        android:onClick="openMeerInfo"/>
+        android:onClick="openLockInfoActivity"/>
 
 </RelativeLayout>
