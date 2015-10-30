@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.android.internal.util.Predicate;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
@@ -39,12 +40,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         // PUT INFO IN DATABASE
         // Ik maak een string waar de content van de courses in komt te staan.
-        String json = "[{lockName: 'lock 1', infoExerpt: 'bla', info: 'blabla', prize: 4}," +
-                "{lockName: 'lock 2', infoExerpt: 'bla', info: 'blabla', prize: 2}," +
-                "{lockName: 'lock 4', infoExerpt: 'bla', info: 'blabla', prize: 3}]";
+        String json = "[{lockName: 'lock 1', infoExerpt: 'Dit is slotje 1', info: 'blabla', prize: 4}," +
+                "{lockName: 'lock 2', infoExerpt: 'Dit is slotje 2', info: 'blabla', prize: 2}," +
+                "{lockName: 'lock 3', infoExerpt: 'Dit is slotje 3', info: 'blabla', prize: 3}]";
 
         Gson gson = new Gson();
         LockModel[] lockModels = gson.fromJson(json, LockModel[].class);
@@ -64,9 +64,7 @@ public class MainActivity extends AppCompatActivity {
         Cursor lockRS = dbHelper.query(DatabaseInfo.LockTables.LOCK, new String[]{"*"}, null, null, null, null, null);
         lockRS.moveToFirst();   // Skip de lege elementen vooraan de rij. Maar : rij kan leeg zijn dus falen
 
-        int locksInDb = lockRS.getColumnCount();
-
-        for (int i = 0; i <= locksInDb; i++) {
+        while ( !lockRS.isAfterLast() ) {
             List<String> lockList = new ArrayList();
 
             lockList.add(lockRS.getString(lockRS.getColumnIndex(DatabaseInfo.LockColumn.LOCKNAME)));
@@ -115,7 +113,12 @@ public class MainActivity extends AppCompatActivity {
                 itemValue = (String) listView.getItemAtPosition(position);
 
                 TextView newtext = (TextView) findViewById(R.id.lockInfoField);
-                newtext.setText("Dit is een " + itemValue + ". Dit slot staat op de " + itemPosition + "e plaats in de lijst. Met dit slot kan je deuren op slot doen.");
+                for( int i = 0; i < listOfLocks.size(); i++) {
+                    if( itemValue == listOfLocks.get(i).get(0)){
+                        newtext.setText(listOfLocks.get(i).get(2));
+
+                    }
+                }
 
                 Button btn = (Button) findViewById(R.id.moreInfoButton);
                 btn.setEnabled(true);
