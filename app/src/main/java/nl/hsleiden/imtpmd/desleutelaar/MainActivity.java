@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
     ListView listView;
     // ListView Clicked item index
     int itemPosition;
-    public final static String EXTRA_MESSAGE = "com.mycompany.myfirstapp.MESSAGE";
+    public final static String EXTRA_MESSAGE = "nl.hsleiden.imtpmd.desleutelaar.MESSAGE";
     // ListView Clicked item value
     String itemValue;
 
@@ -140,7 +140,8 @@ public class MainActivity extends AppCompatActivity {
     public void openMeerInfo(View view) {
         Log.d("De meer knop", "is succesvol ingedrukt!");
         Intent intent = new Intent(this, LockInfoActivity.class);
-        intent.putExtra(EXTRA_MESSAGE, itemValue);
+        String message = itemValue;
+        intent.putExtra(EXTRA_MESSAGE, message);
         startActivity(intent);
     }
 

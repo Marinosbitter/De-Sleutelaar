@@ -6,15 +6,25 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 public class LockInfoActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Get the message from the intent
         Intent intent = getIntent();
         String lockValue = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
-        Log.d("lock nummer", lockValue);
+
+        // Create the text view
+        TextView textView = new TextView(this);
+        textView.setTextSize(40);
+        textView.setText(lockValue);
+
+        // Set the text view as the activity layout
+        setContentView(textView);
     }
 
     @Override
