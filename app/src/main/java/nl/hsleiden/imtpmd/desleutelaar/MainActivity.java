@@ -11,16 +11,23 @@ import android.view.MenuItem;
 
 import com.google.gson.Gson;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import nl.hsleiden.imtpmd.desleutelaar.database.DatabaseHelper;
 import nl.hsleiden.imtpmd.desleutelaar.database.DatabaseInfo;
 
 public class MainActivity extends AppCompatActivity {
+
+    List<List<String>> listOfLocks = new ArrayList();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+        // PUT INFO IN DATABASE
         // Ik maak een string waar de content van de courses in komt te staan.
         String json = "[{lockName: 'lock 1', infoExerpt: 'bla', info: 'blabla', prize: 4}," +
                 "{lockName: 'lock 2', infoExerpt: 'bla', info: 'blabla', prize: 2}," +
@@ -38,33 +45,27 @@ public class MainActivity extends AppCompatActivity {
             values.put(DatabaseInfo.LockColumn.PRIZE, lockModel.prize);
             dbHelper.insert(DatabaseInfo.LockTables.LOCK, null, values);
         }
+
+        // GET INFO FROM DATABASE
         //    public Cursor query(String table, String[] columns, String selection, String[] selectArgs, String groupBy, String having, String orderBy){
         Cursor lockRS = dbHelper.query(DatabaseInfo.LockTables.LOCK, new String[]{"*"}, null, null, null, null, null);
         lockRS.moveToFirst();   // Skip de lege elementen vooraan de rij. Maar : rij kan leeg zijn dus falen
-        // Haalt uit de resultset
-        String lockName = lockRS.getString(lockRS.getColumnIndex(DatabaseInfo.LockColumn.LOCKNAME));
-        String info = lockRS.getString(lockRS.getColumnIndex(DatabaseInfo.LockColumn.INFO));
-        String infoEx = lockRS.getString(lockRS.getColumnIndex(DatabaseInfo.LockColumn.INFO_EXCERPT));
-        String prize = lockRS.getString(lockRS.getColumnIndex(DatabaseInfo.LockColumn.PRIZE));
 
-        // Even checken of dit goed binnen komt
-        Log.d("Marijn_Lock 1", "Name :" + lockName);
-        Log.d("Marijn_Lock 1", "info :" + info);
-        Log.d("Marijn_Lock 1", "infoEx :" + infoEx);
-        Log.d("Marijn_Lock 1", "prize :" + prize);
+        int locksInDb = lockRS.getColumnCount();
 
-        lockRS.moveToNext();
-        // Haalt uit de resultset
-        lockName = lockRS.getString(lockRS.getColumnIndex(DatabaseInfo.LockColumn.LOCKNAME));
-        info = lockRS.getString(lockRS.getColumnIndex(DatabaseInfo.LockColumn.INFO));
-        infoEx = lockRS.getString(lockRS.getColumnIndex(DatabaseInfo.LockColumn.INFO_EXCERPT));
-        prize = lockRS.getString(lockRS.getColumnIndex(DatabaseInfo.LockColumn.PRIZE));
+        for (int i = 0; i <= locksInDb; i++) {
+            List<String> lockList = new ArrayList();
+            lockList.add(lockRS.getString(lockRS.getColumnIndex(DatabaseInfo.LockColumn.LOCKNAME)));
+            lockList.add(lockRS.getString(lockRS.getColumnIndex(DatabaseInfo.LockColumn.INFO)));
+            lockList.add(lockRS.getString(lockRS.getColumnIndex(DatabaseInfo.LockColumn.INFO_EXCERPT)));
+            lockList.add(lockRS.getString(lockRS.getColumnIndex(DatabaseInfo.LockColumn.PRIZE)));
 
-        // Even checken of dit goed binnen komt
-        Log.d("Marijn_Lock 2", "Name :" + lockName);
-        Log.d("Marijn_Lock 2", "info :" + info);
-        Log.d("Marijn_Lock 2", "infoEx :" + infoEx);
-        Log.d("Marijn_Lock 2", "prize :" + prize);
+            listOfLocks.add(lockList);
+            lockRS.moveToNext();
+        }
+
+       // Even checken of dit goed binnen komt
+        Log.d("Marijn_Lock 1", "Name :" + listOfLocks);
     }
 
     @Override
