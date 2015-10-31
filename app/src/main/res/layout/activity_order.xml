@@ -33,7 +33,7 @@
         android:layout_alignParentRight="true"
         android:clickable="true"
         android:enabled="true"
-        android:onClick="openLockInfoActivity"/>
+        android:onClick="confirmOrder"/>
 
     <Button
         android:layout_width="wrap_content"
@@ -46,25 +46,13 @@
         android:enabled="true"
         android:onClick="openLockInfoActivity"/>
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:ems="10"
-        android:id="@+id/editText"
-        android:layout_below="@+id/lockInfoField"
-        android:layout_alignRight="@+id/confirmButton"
-        android:layout_alignEnd="@+id/confirmButton"
-        android:layout_toRightOf="@+id/textView2"
-        android:layout_toEndOf="@+id/textView2" />
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Naam:"
         android:id="@+id/textView2"
-        android:layout_alignBottom="@+id/editText"
+        android:layout_alignBottom="@+id/nameField"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/lockInfoField" />
@@ -73,23 +61,86 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Naam:"
+        android:text="Adres:"
         android:id="@+id/textView"
-        android:layout_alignBottom="@+id/editText2"
+        android:layout_alignBottom="@+id/addressField"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignTop="@+id/editText2" />
+        android:layout_alignTop="@+id/addressField" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Tel. nr:"
+        android:id="@+id/textView3"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/textView"
+        android:layout_alignBottom="@+id/telephoneField" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Email:"
+        android:id="@+id/textView4"
+        android:layout_below="@+id/textView3"
+        android:layout_toLeftOf="@+id/addressField"
+        android:layout_toStartOf="@+id/addressField"
+        android:layout_alignBottom="@+id/emailField" />
+
+    // invoerveld naam
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
         android:ems="10"
-        android:id="@+id/editText2"
-        android:layout_below="@+id/editText"
-        android:layout_alignRight="@+id/editText"
-        android:layout_alignEnd="@+id/editText"
+        android:id="@+id/nameField"
+        android:layout_below="@+id/lockInfoField"
+        android:layout_alignRight="@+id/confirmButton"
+        android:layout_alignEnd="@+id/confirmButton"
+        android:layout_toRightOf="@+id/textView2"
+        android:layout_toEndOf="@+id/textView2" />
+
+    // invoerveld adres
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/addressField"
+        android:layout_below="@+id/nameField"
+        android:layout_alignRight="@+id/nameField"
+        android:layout_alignEnd="@+id/nameField"
         android:layout_toRightOf="@+id/textView"
         android:layout_toEndOf="@+id/textView" />
+
+    // invoerveld telefoonnummer
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="phone"
+        android:ems="10"
+        android:id="@+id/telephoneField"
+        android:layout_below="@+id/addressField"
+        android:layout_alignRight="@+id/addressField"
+        android:layout_alignEnd="@+id/addressField"
+        android:layout_toRightOf="@+id/textView3"
+        android:layout_toEndOf="@+id/textView3" />
+
+    // invoerveld email
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:ems="10"
+        android:id="@+id/emailField"
+        android:layout_below="@+id/telephoneField"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_toRightOf="@+id/textView3"
+        android:layout_toEndOf="@+id/textView3" />
+
 
 </RelativeLayout>

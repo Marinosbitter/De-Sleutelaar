@@ -7,6 +7,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
 
 public class OrderActivity extends AppCompatActivity {
 
@@ -41,5 +43,22 @@ public class OrderActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void confirmOrder(View view) {
+        EditText namefield = (EditText)findViewById(R.id.nameField);
+        String name = namefield.getText().toString();
+
+        EditText addressfield = (EditText)findViewById(R.id.addressField);
+        String address = addressfield.getText().toString();
+
+        EditText telephonefield = (EditText)findViewById(R.id.telephoneField);
+        String telephone = telephonefield.getText().toString();
+
+        EditText emailfield = (EditText)findViewById(R.id.emailField);
+        String email = emailfield.getText().toString();
+
+        // even testen
+        Log.d("Gegevens:", name + " " + address + " " + telephone + " " + email);
     }
 }
