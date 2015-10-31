@@ -63,7 +63,6 @@ public class OrderActivity extends AppCompatActivity {
     }
 
 
-
     public void confirmOrder(View view) {
         String name = namefield.getText().toString();
         String address = addressfield.getText().toString();
@@ -77,8 +76,9 @@ public class OrderActivity extends AppCompatActivity {
         values.put(DatabaseInfo.CustomerColumn.MAIL, "" + email);
         dbHelper.insert(DatabaseInfo.CustomerTables.CUSTOMER, null, values);
 
-        String orderJSON = "{customerName: '"+name+"', adress: '"+address+"', phone: '"+telephone+"', email: '"+email+"', type: 'sf'}]";
+        String orderJSON = "{customerName: '" + name + "', adress: '" + address + "', phone: '" + telephone + "', email: '" + email + "', type: '" + itemValue + "'}]";
         // Use orderJSON to communicate with the database api :)
+
         // even testen
         Log.d("Gegevens:", name + " " + address + " " + telephone + " " + email);
 
