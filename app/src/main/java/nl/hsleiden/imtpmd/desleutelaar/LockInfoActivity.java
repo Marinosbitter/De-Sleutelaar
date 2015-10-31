@@ -11,6 +11,9 @@ import android.widget.TextView;
 
 public class LockInfoActivity extends AppCompatActivity {
 
+    public final static String EXTRA_MESSAGE = "nl.hsleiden.imtpmd.desleutelaar.MESSAGE";
+    String itemValue;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -18,39 +21,25 @@ public class LockInfoActivity extends AppCompatActivity {
 
         // Get the message from the intent
         Intent intent = getIntent();
-        String lockValue = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
+        itemValue = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
 
         // Find the info field and sets it to the lock value
         TextView lockName;
         lockName = (TextView) findViewById(R.id.extensiveInfoField);
-        lockName.setText(lockValue);
+        lockName.setText(itemValue);
 
     }
-    public void openOrderActivity(View view) {
-        Log.d("De bestel knop", "is succesvol ingedrukt!");
-        Intent intent = new Intent(this, OrderActivity.class);
+
+    public void openMainActivity(View view) {
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_lock_info, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
+    public void openOrderActivity(View view) {
+        Log.d("De bestel knop", "is succesvol ingedrukt!");
+        Intent intent = new Intent(this, OrderActivity.class);
+        String message = itemValue;
+        intent.putExtra(EXTRA_MESSAGE, message);
+        startActivity(intent);
     }
 }

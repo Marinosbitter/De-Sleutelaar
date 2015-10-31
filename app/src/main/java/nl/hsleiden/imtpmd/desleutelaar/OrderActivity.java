@@ -1,21 +1,17 @@
 package nl.hsleiden.imtpmd.desleutelaar;
 
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.google.gson.Gson;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import nl.hsleiden.imtpmd.desleutelaar.database.DatabaseHelper;
 import nl.hsleiden.imtpmd.desleutelaar.database.DatabaseInfo;
@@ -27,6 +23,9 @@ public class OrderActivity extends AppCompatActivity {
     EditText addressfield;
     EditText telephonefield;
     EditText emailfield;
+
+    public final static String EXTRA_MESSAGE = "nl.hsleiden.imtpmd.desleutelaar.MESSAGE";
+    String itemValue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,34 +47,22 @@ public class OrderActivity extends AppCompatActivity {
             telephonefield.setText(customerRS.getString(customerRS.getColumnIndex(DatabaseInfo.CustomerColumn.PHONE)));
             emailfield.setText(customerRS.getString(customerRS.getColumnIndex(DatabaseInfo.CustomerColumn.MAIL)));
         }
+        Intent intent = getIntent();
+        itemValue = intent.getStringExtra(LockInfoActivity.EXTRA_MESSAGE);
+
+        TextView lockName;
+        lockName = (TextView) findViewById(R.id.lockInfoField);
+        lockName.setText(itemValue);
     }
 
     public void openLockInfoActivity(View view) {
         Intent intent = new Intent(this, LockInfoActivity.class);
+        String message = itemValue;
+        intent.putExtra(EXTRA_MESSAGE, message);
         startActivity(intent);
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_order, menu);
-        return true;
-    }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 
     public void confirmOrder(View view) {
         String name = namefield.getText().toString();
@@ -92,5 +79,14 @@ public class OrderActivity extends AppCompatActivity {
 
         String orderJSON = "{customerName: '"+name+"', adress: '"+address+"', phone: '"+telephone+"', email: '"+email+"', type: 'sf'}]";
         // Use orderJSON to communicate with the database api :)
+        // even testen
+        Log.d("Gegevens:", name + " " + address + " " + telephone + " " + email);
+
+        Context context = getApplicationContext();
+        CharSequence text = "Bestelling geplaatst!";
+        int duration = Toast.LENGTH_SHORT;
+
+        Toast toast = Toast.makeText(context, text, duration);
+        toast.show();
     }
 }
