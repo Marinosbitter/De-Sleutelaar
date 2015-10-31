@@ -25,7 +25,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Bestel"
+        android:text="@string/order_button"
         android:id="@+id/orderButton"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
@@ -37,7 +37,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Annuleer"
+        android:text="@string/cancel_button"
         android:id="@+id/cancelButton"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"

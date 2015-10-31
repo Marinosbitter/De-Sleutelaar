@@ -62,8 +62,10 @@ public class OrderActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-
     public void confirmOrder(View view) {
+        // haal de waarden uit de velden
+        EditText namefield = (EditText)findViewById(R.id.nameField);
+
         String name = namefield.getText().toString();
         String address = addressfield.getText().toString();
         String telephone = telephonefield.getText().toString();
@@ -82,11 +84,15 @@ public class OrderActivity extends AppCompatActivity {
         // even testen
         Log.d("Gegevens:", name + " " + address + " " + telephone + " " + email);
 
+        // laat een toast zien
         Context context = getApplicationContext();
         CharSequence text = "Bestelling geplaatst!";
         int duration = Toast.LENGTH_SHORT;
-
         Toast toast = Toast.makeText(context, text, duration);
         toast.show();
+
+        // ga terug naar hoofdscherm
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
 }
