@@ -39,24 +39,28 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        
+
         // PUT INFO IN DATABASE
         // Ik maak een string waar de content van de courses in komt te staan.
         String json = "[{lockName: 'lock 1', infoExerpt: 'Dit is slotje 1', info: 'blabla', prize: 4}," +
                 "{lockName: 'lock 2', infoExerpt: 'Dit is slotje 2', info: 'blabla', prize: 2}," +
-                "{lockName: 'lock 3', infoExerpt: 'Dit is slotje 3', info: 'blabla', prize: 3}]";
+                "{lockName: 'lock 3', infoExerpt: 'Dit is slotje 3', info: 'blabla', prize: 3}," +
+                "{lockName: 'lock 4', infoExerpt: 'Dit is slotje 4', info: 'Slotje 4 is een geile donder', prize: 17}]";
 
         Gson gson = new Gson();
         LockModel[] lockModels = gson.fromJson(json, LockModel[].class);
         DatabaseHelper dbHelper = DatabaseHelper.getHelper(this);
 
         for (LockModel lockModel : lockModels) {
-            ContentValues values = new ContentValues();
-            values.put(DatabaseInfo.LockColumn.LOCKNAME, lockModel.lockName);
-            values.put(DatabaseInfo.LockColumn.INFO, lockModel.info);
-            values.put(DatabaseInfo.LockColumn.INFO_EXCERPT, lockModel.infoExerpt);
-            values.put(DatabaseInfo.LockColumn.PRIZE, lockModel.prize);
-            dbHelper.insert(DatabaseInfo.LockTables.LOCK, null, values);
+            Cursor checkLock = dbHelper.query(DatabaseInfo.LockTables.LOCK, new String[]{DatabaseInfo.LockColumn.LOCKNAME}, DatabaseInfo.LockColumn.LOCKNAME + " = '" + lockModel.lockName + "'", null, null, null, null);
+            if (checkLock.getCount() == 0) {
+                ContentValues values = new ContentValues();
+                values.put(DatabaseInfo.LockColumn.LOCKNAME, lockModel.lockName);
+                values.put(DatabaseInfo.LockColumn.INFO, lockModel.info);
+                values.put(DatabaseInfo.LockColumn.INFO_EXCERPT, lockModel.infoExerpt);
+                values.put(DatabaseInfo.LockColumn.PRIZE, lockModel.prize);
+                dbHelper.insert(DatabaseInfo.LockTables.LOCK, null, values);
+            }
         }
 
         // GET INFO FROM DATABASE
