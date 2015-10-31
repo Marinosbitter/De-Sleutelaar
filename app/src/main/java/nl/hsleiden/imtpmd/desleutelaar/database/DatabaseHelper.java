@@ -19,7 +19,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static DatabaseHelper mInstance;
 
     public static final String dbName = "sleutelaar.db";
-    public static final int dbVersion = 5;
+    public static final int dbVersion = 7;
 
     public DatabaseHelper(Context ctx) {
         super(ctx, dbName, null, dbVersion);
@@ -66,8 +66,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void insert(String table, String nullColumnHack, ContentValues values) {
         mSQLDB.insert(table, nullColumnHack, values);
     }
-
-
+    
     public Cursor query(String table, String[] columns, String selection, String[] selectArgs, String groupBy, String having, String orderBy) {
         return mSQLDB.query(table, columns, selection, selectArgs, groupBy, having, orderBy);
     }
