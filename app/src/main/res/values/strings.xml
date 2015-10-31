@@ -5,6 +5,9 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_lock_info">Slot informatie</string>
     <string name="title_activity_order">Bestel informatie</string>
+    <string name="cancel_button">Annuleer</string>
+    <string name="more_info_button">Meer</string>
+    <string name="order_button">Bestel</string>
 
     <string name="welkomtext"> Welkom in onze app. De Sleutelaar is een slotenbedrijf dat sloten maakt voor de particuliere en commerciële sector.
 
