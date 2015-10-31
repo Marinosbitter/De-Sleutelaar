@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
         Cursor lockRS = dbHelper.query(DatabaseInfo.LockTables.LOCK, new String[]{"*"}, null, null, null, null, null);
         lockRS.moveToFirst();   // Skip de lege elementen vooraan de rij. Maar : rij kan leeg zijn dus falen
 
-        while ( !lockRS.isAfterLast() ) {
+        while (!lockRS.isAfterLast()) {
             List<String> lockList = new ArrayList();
 
             lockList.add(lockRS.getString(lockRS.getColumnIndex(DatabaseInfo.LockColumn.LOCKNAME)));
@@ -113,8 +113,8 @@ public class MainActivity extends AppCompatActivity {
                 itemValue = (String) listView.getItemAtPosition(position);
 
                 TextView newtext = (TextView) findViewById(R.id.lockInfoField);
-                for( int i = 0; i < listOfLocks.size(); i++) {
-                    if( itemValue == listOfLocks.get(i).get(0)){
+                for (int i = 0; i < listOfLocks.size(); i++) {
+                    if (itemValue == listOfLocks.get(i).get(0)) {
                         newtext.setText(listOfLocks.get(i).get(2));
 
                     }
