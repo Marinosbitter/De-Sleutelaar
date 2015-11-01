@@ -43,6 +43,13 @@ public class OrderActivity extends AppCompatActivity {
         if (!isOnline()) {
             Button confirmButton = (Button) findViewById(R.id.confirmButton);
             confirmButton.setEnabled(false);
+
+            // laat een toast zien
+            Context context = getApplicationContext();
+            CharSequence text = getString(R.string.offlineTextOrder);
+            int duration = Toast.LENGTH_LONG;
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.show();
         }
 
         namefield = (EditText) findViewById(R.id.nameField);
