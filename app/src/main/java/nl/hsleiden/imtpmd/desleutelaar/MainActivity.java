@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
         if (!isOnline()) {
             // laat een toast zien
             Context context = getApplicationContext();
-            CharSequence text = "Pas op! Er is geen dataverbinding. De informatie in de app kan verouderd zijn.";
+            CharSequence text = getString(R.string.offlineText);
             int duration = Toast.LENGTH_LONG;
             Toast toast = Toast.makeText(context, text, duration);
             toast.show();

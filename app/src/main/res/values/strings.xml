@@ -14,5 +14,6 @@
     Selecteer hieronder een slot om verder te gaan:
     </string>
     <string name="prize">Prijs: €</string>
+    <string name="offlineText">Pas op! Je bent offline, hierdoor kan de informatie van de app niet up-to-date zijn.</string>
 
 </resources>
