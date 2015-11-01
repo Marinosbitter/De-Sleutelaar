@@ -4,10 +4,13 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -36,6 +39,11 @@ public class OrderActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         itemValue = intent.getStringExtra(LockInfoActivity.EXTRA_MESSAGE);
+
+        if (!isOnline()) {
+            Button confirmButton = (Button) findViewById(R.id.confirmButton);
+            confirmButton.setEnabled(false);
+        }
 
         namefield = (EditText) findViewById(R.id.nameField);
         addressfield = (EditText) findViewById(R.id.addressField);
@@ -108,5 +116,12 @@ public class OrderActivity extends AppCompatActivity {
         // ga terug naar hoofdscherm
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
+    }
+
+    public boolean isOnline() {
+        ConnectivityManager cm =
+                (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo netInfo = cm.getActiveNetworkInfo();
+        return netInfo != null && netInfo.isConnectedOrConnecting();
     }
 }
