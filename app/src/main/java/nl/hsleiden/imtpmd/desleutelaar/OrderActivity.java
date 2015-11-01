@@ -24,6 +24,8 @@ public class OrderActivity extends AppCompatActivity {
     EditText telephonefield;
     EditText emailfield;
 
+    TextView lockInfoExField;
+
     public final static String EXTRA_MESSAGE = "nl.hsleiden.imtpmd.desleutelaar.MESSAGE";
     String itemValue;
 
@@ -32,10 +34,24 @@ public class OrderActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order);
 
+        Intent intent = getIntent();
+        itemValue = intent.getStringExtra(LockInfoActivity.EXTRA_MESSAGE);
+
         namefield = (EditText) findViewById(R.id.nameField);
         addressfield = (EditText) findViewById(R.id.addressField);
         telephonefield = (EditText) findViewById(R.id.telephoneField);
         emailfield = (EditText) findViewById(R.id.emailField);
+
+        lockInfoExField = (TextView) findViewById(R.id.lockInfoField);
+
+        // Get lock info from DB
+        DatabaseHelper dbHelper = DatabaseHelper.getHelper(this);
+        Cursor getLockInfo = dbHelper.query(DatabaseInfo.LockTables.LOCK, new String[]{"*"}, DatabaseInfo.LockColumn.LOCKNAME + " = '" + itemValue + "'", null, null, null, null);
+        getLockInfo.moveToFirst();
+        if (getLockInfo.getCount() != 0) {
+            // Find the info field and sets it to the lock value
+            lockInfoExField.setText(getLockInfo.getString(getLockInfo.getColumnIndex(DatabaseInfo.LockColumn.INFO_EXCERPT)));
+        }
 
         Cursor customerRS = dbHelper.query(DatabaseInfo.CustomerTables.CUSTOMER, new String[]{"*"}, null, null, null, null, null);
 
@@ -47,11 +63,9 @@ public class OrderActivity extends AppCompatActivity {
             telephonefield.setText(customerRS.getString(customerRS.getColumnIndex(DatabaseInfo.CustomerColumn.PHONE)));
             emailfield.setText(customerRS.getString(customerRS.getColumnIndex(DatabaseInfo.CustomerColumn.MAIL)));
         }
-        Intent intent = getIntent();
-        itemValue = intent.getStringExtra(LockInfoActivity.EXTRA_MESSAGE);
 
         TextView lockName;
-        lockName = (TextView) findViewById(R.id.lockInfoField);
+        lockName = (TextView) findViewById(R.id.lockNameField);
         lockName.setText(itemValue);
     }
 
@@ -64,7 +78,7 @@ public class OrderActivity extends AppCompatActivity {
 
     public void confirmOrder(View view) {
         // haal de waarden uit de velden
-        EditText namefield = (EditText)findViewById(R.id.nameField);
+        EditText namefield = (EditText) findViewById(R.id.nameField);
 
         String name = namefield.getText().toString();
         String address = addressfield.getText().toString();
