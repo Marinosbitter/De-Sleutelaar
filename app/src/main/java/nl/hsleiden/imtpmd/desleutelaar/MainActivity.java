@@ -60,10 +60,15 @@ public class MainActivity extends AppCompatActivity {
 
         // PUT INFO IN DATABASE
         // Ik maak een string waar de content van de courses in komt te staan.
-        String json = "[{lockName: 'lock 1', infoExerpt: 'Dit is slotje 1', info: 'blabla', prize: 4}," +
-                "{lockName: 'lock 2', infoExerpt: 'Dit is slotje 2', info: 'blabla', prize: 2}," +
-                "{lockName: 'lock 3', infoExerpt: 'Dit is slotje 3', info: 'blabla', prize: 3}," +
-                "{lockName: 'lock 4', infoExerpt: 'Dit is slotje 4', info: 'Slotje 4 is een geile donder', prize: 17}]";
+        String json =
+                "[{lockName: 'Yale Oplegslot', infoExerpt: 'Dit is een Yale Oplegslot', info: 'Vaste buitencilinder. 3 sleutels. Extra sleutel kopieën direct mee te bestellen. Sluitkast. Schroeven. Rozet. Geen keurmerk.', prize: 65}," +
+                "{lockName: 'Nemef bezetslot', infoExerpt: 'Dit is een Nemef bezetslot', info: 'Op zoek naar de ultieme beveiliging voor uw huis? Kies dan voor het Nemef ENTR elektronisch slot. Nemef ENTR is de revolutionaire, slimme vergrendelingsoplossing waarmee je de deur via je smartphone, tablet of andere apparaten met Bluetooth kunt bedienen. Veilig en comfortabel.', prize: 284}," +
+                "{lockName: 'Nacht oplegslot', infoExerpt: 'Dit is een nachtoplegslot', info: 'Oplegsloten zijn zeer geschikt om extra veiligheid aan te brengen voor uw pand. Dit slot is eenvoudig te plaatsen, bovendien zijn onze oplegsloten onderhoudsvrij. Zo kunt u met een oplegslot uw woning jarenlang beveiligen.', prize: 84}," +
+                "{lockName: 'Fiam insteekpenslot', infoExerpt: 'Dit een Fiam insteekpenslot', info: '2 sterren pen-insteekslot extra zware uitvoering, heeft het SKG**® keurmerk, met zware sluitkom. Dit is een extra zware uitvoering van het bekende pennenslot, speciaal voor diegene die van kwaliteit houden en met minder geen genoegen nemen.', prize: 35}," +
+                "{lockName: 'Cilinderslot', infoExerpt: 'Dit is een Cilinderslot', info: 'Standaard kwaliteit. Met name geschikt voor binnendeuren. Gelijksluitend uit voorraad leverbaar. Met 5 permutatiestiften', prize: 55}," +
+                "{lockName: 'Economy badkamerslot', infoExerpt: 'Dit is een Economy badkamerslot', info: 'Geschikt voor binnendeuren in woningbouw instekend. Kast afmeting 117 x 80 x 17 mm. Krukgat 8 mm kruk-sleutelgat hart op hart 63 mm. Met afgeronde voorplaat 174 x 20 mm. Compleet met sluitplaat. Uitvoering voorplaat roestvaststaal dagschoot messing nachtschoot messing. Rechts en links bruikbaar. ', prize: 21}," +
+                "{lockName: 'Zaso penslot', infoExerpt: 'Dit is een zaso penslot', info: 'Standaard geleverd met 3 kruissleutels, sluitkom en sleutelplaatjes, in verschillend sluitende uitvoering. Ook gelijksluitend (tot 20 stuks) verkrijgbaar dan geleverd met 2 ipv 3 sleutels per slot (zelfde sleutel -2 per slot- voor alle GS pensloten)', prize: 500}," +
+                "{lockName: 'ART5 pro-tect slot', infoExerpt: 'Dit is een ART5 pro-tect slot', info: 'ART 5 TNO/ART gekeurd. Beugeldikte hangslot: 15,5mm. Schakeldikte ketting: 14,5mm. Gehard staal Dubbelsluitend. Dit kettingslot heeft de hoogste type goedkeuring en is geschikt voor dure motoren. Verzekeringen eisen vaak een ART5 slot als het slot een hoge waarde heeft. Met dit slot kan een motor op een plaats blijven staan waar een hoog diefstal risico is.', prize: 54}]";
 
         Gson gson = new Gson();
         LockModel[] lockModels = gson.fromJson(json, LockModel[].class);
