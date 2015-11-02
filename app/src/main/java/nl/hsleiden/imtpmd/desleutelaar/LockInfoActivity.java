@@ -61,6 +61,8 @@ public class LockInfoActivity extends AppCompatActivity {
 
     public void openMainActivity(View view) {
         Intent intent = new Intent(this, MainActivity.class);
+        String message = itemValue;
+        intent.putExtra(EXTRA_MESSAGE, message);
         startActivity(intent);
     }
 

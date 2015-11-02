@@ -14,10 +14,10 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
         android:textIsSelectable="false"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:layout_toLeftOf="@+id/moreInfoButton"
+        android:layout_toStartOf="@+id/moreInfoButton" />
 
     <ListView
         android:layout_width="wrap_content"
@@ -52,5 +52,17 @@
         android:clickable="false"
         android:enabled="false"
         android:onClick="openLockInfoActivity"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView"
+        android:src="@drawable/sleutelaar_icon"
+        android:layout_alignParentTop="true"
+        android:layout_alignRight="@+id/list"
+        android:layout_alignEnd="@+id/list"
+        android:layout_toRightOf="@+id/welcomeText"
+        android:layout_toEndOf="@+id/welcomeText"
+        android:layout_above="@+id/list" />
 
 </RelativeLayout>

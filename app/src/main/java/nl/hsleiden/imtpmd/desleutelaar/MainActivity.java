@@ -23,6 +23,8 @@ import android.widget.Toast;
 import com.android.internal.util.Predicate;
 import com.google.gson.Gson;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,6 +45,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Intent intent = getIntent();
+        itemValue = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
 
         if (!isOnline()) {
             // laat een toast zien
@@ -108,7 +113,6 @@ public class MainActivity extends AppCompatActivity {
         // Second parameter - Layout for the row
         // Third parameter - ID of the TextView to which the data is written
         // Forth - the Array of data
-
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1, android.R.id.text1, values);
 
@@ -132,7 +136,6 @@ public class MainActivity extends AppCompatActivity {
                 for (int i = 0; i < listOfLocks.size(); i++) {
                     if (itemValue == listOfLocks.get(i).get(0)) {
                         newtext.setText(listOfLocks.get(i).get(2));
-
                     }
                 }
 
@@ -141,6 +144,18 @@ public class MainActivity extends AppCompatActivity {
                 btn.setClickable(true);
             }
         });
+
+        if (itemValue != null && !itemValue.isEmpty()){
+            Log.d("asdf", "er is een knop gekozen" + itemValue);
+            TextView newtext = (TextView) findViewById(R.id.lockInfoField);
+            for (int i = 0; i < listOfLocks.size(); i++) {
+                    newtext.setText(listOfLocks.get(i).get(2));
+            }
+
+            Button btn = (Button) findViewById(R.id.moreInfoButton);
+            btn.setEnabled(true);
+            btn.setClickable(true);
+        }
     }
 
     public void openLockInfoActivity(View view) {
