@@ -71,7 +71,7 @@ public class OrderActivity extends AppCompatActivity {
         Cursor customerRS = dbHelper.query(DatabaseInfo.CustomerTables.CUSTOMER, new String[]{"*"}, null, null, null, null, null);
 
         if (customerRS.getCount() != 0) {
-            customerRS.moveToFirst();   // Skip de lege elementen vooraan de rij. Maar : rij kan leeg zijn dus falen
+            customerRS.moveToLast ();
 
             namefield.setText(customerRS.getString(customerRS.getColumnIndex(DatabaseInfo.CustomerColumn.CUSTOMERNAME)));
             addressfield.setText(customerRS.getString(customerRS.getColumnIndex(DatabaseInfo.CustomerColumn.ADRESS)));
